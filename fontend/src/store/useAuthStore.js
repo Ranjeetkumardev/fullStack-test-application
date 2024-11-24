@@ -82,7 +82,7 @@ export const useAuthStore = create((set, get) => ({
 
   // Handle post separately
   createPost: async (data) => {
-    console.log("data form", data);
+    
     set({ isPost: true });
     try {
       const formData = new FormData();

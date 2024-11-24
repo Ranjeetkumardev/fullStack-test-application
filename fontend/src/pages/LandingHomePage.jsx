@@ -10,10 +10,10 @@ const LandingHomePage = () => {
 
   // Fetch users on component mount
   useEffect(() => {
-    getAllusers(); // Call the function to fetch users
+    getAllusers();  
   }, [getAllusers]);
   
-  console.log(allUsers?.users)
+  
   // Handle loading state
   if (isLoading) {
     return (

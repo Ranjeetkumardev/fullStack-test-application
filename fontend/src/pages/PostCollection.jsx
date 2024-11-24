@@ -10,8 +10,7 @@ const PostCollection = () => {
   useEffect(() => {
     getProfile();
   }, []);
-
-  console.log(authUser);
+ 
   // Handle loading state
   if (isLoading) {
     return (

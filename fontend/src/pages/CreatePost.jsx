@@ -30,7 +30,7 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       const response = await createPost(userData);
-      console.log(response);
+       
       setUserData({
         title: "",
         description: "",
