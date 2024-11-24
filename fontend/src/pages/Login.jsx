@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
-
+import { toast } from 'sonner';
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -14,12 +14,19 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+ 
     try {
-      const val = await login(formData);
-      <Navigate to="/home" />;
+      const response = await login(formData);
+      if (response) {
+        toast.success("Signed up successfully");
+        <Navigate to="/home" />;
+      } else {
+        toast.error("Something went wrong. Please try again");
+      }
+      
     } catch (err) {
       console.log("err", err);
+      toast.error('unable to logged in ');
     }
     setFormData({
       email: "",

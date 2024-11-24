@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { toast } from 'sonner';
 import {
   Eye,
   EyeOff,
@@ -24,15 +24,23 @@ const SignUpPage = () => {
   const { signup, isSigningUp } = useAuthStore();
 
   const validateForm = () => {
-    if (!formData.fullName.trim()) return "Full name is required";
-    if (!formData.email.trim()) return "Email is required";
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return "Invalid email format";
+    if (!formData.fullName.trim()) {
+      toast.error("Full name is required");
+      return "Full name is required";
+    }
+    if (!formData.email.trim()) {
+      toast.error("Email is require");
+      return "Email is required";}
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      toast.error("Invalid email format");
+      return "Invalid email format"
+    };
     if (!formData.password) {
-      // return toast.error("Password is required");
+      return toast.error("Password is required");
     }
     if (formData.password.length < 6)
       return "Password must be at least 6 characters";
-
+    toast.error('Password must be at least 6 characters');
     return true;
   };
 
@@ -41,14 +49,13 @@ const SignUpPage = () => {
     const success = validateForm();
     try {
       if (success === true && formData) {
-        const val = await signup(formData);
-        
-        if(val){
-          <Navigate to="/home" />
-        }else{
-          return <div className="flex justify-center items-center animate-spin text-pink-500"><Loader2/> </div>
+        const response = await signup(formData);
+        if (response) {
+          toast.success("Signed up successfully");
+          <Navigate to="/home" />;
+        } else {
+          toast.error("Something went wrong. Please try again");
         }
-
       }
     } catch (err) {
       console.log("err", err);

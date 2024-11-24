@@ -47,7 +47,6 @@ export const useAuthStore = create((set, get) => ({
     try {
       const res = await api.post("/auth/login", data);
       set({ authUser: res.data });
-
       //  toast.success("Logged in successfully");
     } catch (error) {
       console.log(error);
@@ -72,7 +71,6 @@ export const useAuthStore = create((set, get) => ({
     set({ isUpdatingProfile: true });
     try {
       const res = await api.patch(`/auth/update-profile`, data);
-      // Merge updated data with existing authUser
       const updatedUser = { ...get().authUser, ...res.data };
       set({ authUser: updatedUser });
     } catch (error) {
@@ -82,7 +80,7 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  // Handle post creation separately
+  // Handle post separately
   createPost: async (data) => {
     console.log("data form", data);
     set({ isPost: true });
@@ -110,8 +108,7 @@ export const useAuthStore = create((set, get) => ({
       set({ isPost: false });
     }
   },
-
-  // Fetch posts for the user
+ 
   getAllusers: async () => {
     set({isLoading : true})
     try {
@@ -125,9 +122,22 @@ export const useAuthStore = create((set, get) => ({
         set({isLoading : false})
     }
   },
+  getProfile: async () => {
+    set({ isLoading: true });
+    try {
+      const response = await api.get("/auth/getProfile");
+      set({ authUser: response.data });
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+
   //   getOtheruser: async (otheruserId) => {
   //     try {
-  //       const res = await api.get("/getaalusers"); // Assuming there's an endpoint to fetch posts
+  //       const res = await api.get("/getaalusers");  
   //       set({ posts: res.data });
   //     } catch (error) {
   //       console.error("Error fetching posts:", error);
@@ -137,7 +147,7 @@ export const useAuthStore = create((set, get) => ({
 
   getPosts: async () => {
     try {
-      const res = await api.get("/posts"); // Assuming there's an endpoint to fetch posts
+      const res = await api.get("/posts"); 
       set({ posts: res.data });
     } catch (error) {
       console.error("Error fetching posts:", error);

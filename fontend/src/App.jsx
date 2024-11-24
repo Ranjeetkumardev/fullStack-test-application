@@ -14,7 +14,7 @@ import CreatePost from "./pages/CreatePost";
 import { useAuthStore } from "./store/useAuthStore";
 import LandingNavBar from "./components/LandingNavBar";
 import NotFound from "./pages/NotFound";
-// import { Toaster } from "react-hot-toast";
+import { Toaster } from 'sonner';
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -111,7 +111,7 @@ const App = () => {
          <Route path="*" element={<NotFound />} />
       </Routes>
       {currentPath === "/login" || currentPath === "/signup" ? "" : <Footer />}
-      {/* <Toaster /> */}
+      <Toaster />
     </div>
   );
 };

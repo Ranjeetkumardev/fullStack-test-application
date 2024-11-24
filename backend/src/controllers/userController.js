@@ -142,7 +142,7 @@ export const getAllUsers = async (req, res) => {
 export const getProfile = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
-    const user = await User.find(loggedInUserId);
+    const user = await User.findById(loggedInUserId);
     res.status(200).json({
       success: true,
       user,

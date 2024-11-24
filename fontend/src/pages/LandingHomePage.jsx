@@ -5,51 +5,7 @@ import { Loader2 } from "lucide-react";
 
 const LandingHomePage = () => {
   
-  const cards = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 1",
-      description:
-        "This is a short description about the content of this card. It's engaging and to the point.",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 2",
-      description:
-        "Explore more about the exciting features and details provided in this card.",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 3",
-      description:
-        "Get to know more about the unique benefits and offerings mentioned here.",
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 3",
-      description:
-        "Get to know more about the unique benefits and offerings mentioned here.",
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 3",
-      description:
-        "Get to know more about the unique benefits and offerings mentioned here.",
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/300x200",
-      title: "Card Title 3",
-      description:
-        "Get to know more about the unique benefits and offerings mentioned here.",
-    },
-    // Add more cards as needed
-  ];
+ 
   const { allUsers, isLoading, getAllusers } = useAuthStore();
 
   // Fetch users on component mount
